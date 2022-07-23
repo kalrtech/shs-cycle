@@ -1,0 +1,66 @@
+{
+"version": "1.0",
+  "containers": {
+    "traefik": {
+      "name": "traefik",
+      "image": {
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "target": "traefik:v2.7"
+          }
+        }
+      },
+      "config": {
+        "network": {
+           "hostname": "traefik",
+           "public": "enable",
+           "ports": ["80:80", "443:443"]
+        },
+        "deploy": {
+          "instances": 1
+        }
+      }
+    },
+	"well-known": {
+      "name": "well-known",
+      "image": {
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "target": "nginx:latest"
+          }
+        }
+      },
+      "config": {
+        "network": {
+           "hostname": "well-known",
+           "public": "disable"
+        },
+        "deploy": {
+          "instances": 1
+        }
+      }
+    },
+    "conduit": {
+        "name": "conduit",
+        "image": {
+          "origin": {
+            "type": "docker-hub",
+            "details": {
+              "target": "matrixconduit/matrix-conduit:latest-alpine"
+            }
+          }
+        },
+        "config": {
+          "network": {
+             "hostname": "conduit",
+             "public": "disable"
+          },
+          "deploy": {
+            "instances": 1
+          }
+        }
+      }
+  }
+}
