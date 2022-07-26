@@ -61,7 +61,7 @@
 					"instances": 1
 				},
 				"runtime": {
-					"env_vars": {
+					"environment_vars": {
 						"CONDUIT_SERVER_NAME": "dobos.me"
 
 					}
